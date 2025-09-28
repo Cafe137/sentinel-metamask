@@ -1,7 +1,8 @@
 name: Check
 
 on:
-    workflow_dispatch:
+    schedule:
+        - cron: '0 11,23 * * *'
 
 jobs:
     check:

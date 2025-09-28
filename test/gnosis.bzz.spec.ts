@@ -21,9 +21,8 @@ test('Buy stamps with BZZ on Gnosis', async ({ context, page, metamaskPage, exte
     await page.locator('button').filter({ hasText: 'Execute Swap' }).click()
     await metamask.confirmTransaction()
     await page
-        .locator('div')
-        .filter({
-            hasText: '⏱️ New storage created: It takes around 1 minute before it becomes accessible on the network.'
+        .getByText('⏱️ New storage created: It takes around 1 minute before it becomes accessible on the network.', {
+            exact: true
         })
         .waitFor()
 })

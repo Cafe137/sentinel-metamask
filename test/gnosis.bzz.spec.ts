@@ -19,8 +19,11 @@ test('Buy stamps with BZZ on Gnosis', async ({ context, page, metamaskPage, exte
     await page.locator('span').filter({ hasText: 'Please select duration' }).click()
     await page.locator('span').filter({ hasText: '2 days' }).click()
     await page.locator('button').filter({ hasText: 'Execute Swap' }).click()
-    await metamask.approveTokenPermission()
-    await page.locator('h3').filter({ hasText: 'Buying storage...' }).waitFor()
     await metamask.confirmTransaction()
-    await page.locator('button').filter({ hasText: 'Upload' }).waitFor()
+    await page
+        .locator('div')
+        .filter({
+            hasText: '⏱️ New storage created: It takes around 1 minute before it becomes accessible on the network.'
+        })
+        .waitFor()
 })

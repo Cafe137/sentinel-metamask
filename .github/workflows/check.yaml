@@ -1,0 +1,23 @@
+name: Check
+
+on:
+    workflow_dispatch:
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '20'
+            - name: Install dependencies
+              run: npm install
+            - name: Setup Synpress
+              run: npx synpress
+            - name: Run tests
+              run: npx playwright test
+              env:
+                  TEST_WALLET_SEED_PHRASE: ${{ secrets.TEST_WALLET_SEED_PHRASE }}
+                  TEST_WALLET_PASSWORD: ${{ secrets.TEST_WALLET_PASSWORD }}

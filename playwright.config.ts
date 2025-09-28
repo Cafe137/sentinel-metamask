@@ -8,7 +8,7 @@ export default defineConfig({
     retries: 0,
     workers: 1,
     reporter: 'html',
-    use: { trace: 'on-first-retry', baseURL: 'https://beeport.ethswarm.org' },
+    use: { trace: 'on-first-retry', baseURL: 'https://beeport.ethswarm.org', headless: true },
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
     timeout: Dates.minutes(1)
 })
